@@ -1,9 +1,8 @@
 import 'package:coincanvas/configs/constants.dart';
 import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/screens/new_transaction_screen.dart';
-import 'package:coincanvas/widgets/global/elevated_button_widget.dart';
-import 'package:coincanvas/widgets/global/title_widget.dart';
 import 'package:coincanvas/widgets/home/home_screen_list_widget.dart';
+import 'package:coincanvas/widgets/home/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,11 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 35,
           centerTitle: true,
-          backgroundColor: CustomColors.background,
-          title: const Text('Transactions (LKR)'),
+          backgroundColor: CustomColors.tealBlue,
+          title: const Text(
+            'Transactions (LKR)',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
           actions: [
+            // This button is used to navigate to AddEntryScreen
             IconButton(
               onPressed: () {
                 Navigator.pushReplacement(
@@ -37,19 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.add),
             ),
           ],
+          // Botton Tabbar
           bottom: TabBar(
             physics: const BouncingScrollPhysics(),
             dividerColor: Colors.transparent,
-            dividerHeight: 1,
-            indicatorWeight: 0,
-            indicatorSize: TabBarIndicatorSize.label,
+            dividerHeight: 0.5,
+            indicatorSize: TabBarIndicatorSize.tab,
             unselectedLabelColor: Colors.black.withOpacity(0.5),
             labelColor: Colors.black,
-            indicator: UnderlineTabIndicator(
-              borderSide:
-                  BorderSide(width: 2.0, color: CustomColors.deepCerulean),
-              insets: EdgeInsets.zero,
-            ),
+            indicator: BoxDecoration(color: CustomColors.cadetBlue),
             tabs: const [
               Tab(text: 'Dashboard'),
               Tab(text: 'Incomes'),
@@ -57,68 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
+          physics: BouncingScrollPhysics(),
           children: [
-            Container(
-              // padding: const EdgeInsets.only(top: 15),
-              height: Constants.screenSize(context).height,
-              child: Column(
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                            width: 0.5, color: Colors.grey.withOpacity(0.5)),
-                        bottom: BorderSide(
-                            width: 1, color: Colors.grey.withOpacity(0.5)),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        summeryItem('Total', '130,678,009', Colors.black),
-                        summeryItem('Income', '136,789,000', Colors.green),
-                        summeryItem('Expense', '136,789,000', Colors.red),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                        padding: const EdgeInsets.all(15),
-                        child: const HomeScreenListWidget()),
-                  ),
-                ],
-              ),
-            ),
+            DashboardScreen(),
             SizedBox(),
             SizedBox(),
           ],
         ),
       ),
-    );
-  }
-
-  Column summeryItem(String title, String amount, Color? color) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 13,
-          ),
-        ),
-        Text(
-          amount,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: color,
-          ),
-        ),
-      ],
     );
   }
 }

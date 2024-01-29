@@ -1,0 +1,82 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coincanvas/configs/constants.dart';
+import 'package:coincanvas/models/entry.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+class EntryRepository extends ChangeNotifier {
+  // // Firebase Authentication
+  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  // // Firebase Firestore
+  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // String? get currentUserId => _firebaseAuth.currentUser?.uid;
+
+  final List<Entry> _entries = [
+    Entry(
+        title: 'Test 1',
+        description:
+            'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
+        amount: 100000000000000000.99,
+        dateTime: DateTime.now(),
+        category: Category.Work,
+        type: Type.Expense,
+        paymentMethod: PaymentMethod.BankTransfer),
+    Entry(
+        title: 'Test 1',
+        description:
+            'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
+        amount: 10.99,
+        dateTime: DateTime.now(),
+        category: Category.Work,
+        type: Type.Expense,
+        paymentMethod: PaymentMethod.BankTransfer),
+    Entry(
+        title: 'Test 1',
+        description:
+            'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
+        amount: 10.99,
+        dateTime: DateTime.now(),
+        category: Category.Work,
+        type: Type.Expense,
+        paymentMethod: PaymentMethod.BankTransfer),
+    Entry(
+        title: 'Test 1',
+        description:
+            'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
+        amount: 10.99,
+        dateTime: DateTime.now(),
+        category: Category.Work,
+        type: Type.Expense,
+        paymentMethod: PaymentMethod.BankTransfer),
+    Entry(
+        title: 'Test 2',
+        description: '',
+        amount: 11.99,
+        dateTime: DateTime.now(),
+        category: Category.Work,
+        type: Type.Income,
+        paymentMethod: PaymentMethod.Cash),
+    Entry(
+        title: 'Test 3',
+        description:
+            'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
+        amount: 13.99,
+        dateTime: DateTime.now(),
+        category: Category.Work,
+        type: Type.Expense,
+        paymentMethod: PaymentMethod.CreditCard),
+    Entry(
+        title: 'Test 4',
+        description: '',
+        amount: 140000.99,
+        dateTime: DateTime.now(),
+        category: Category.Work,
+        type: Type.Income,
+        paymentMethod: PaymentMethod.DebitCard),
+  ];
+
+  List<Entry> get entiresList {
+    return _entries;
+  }
+}

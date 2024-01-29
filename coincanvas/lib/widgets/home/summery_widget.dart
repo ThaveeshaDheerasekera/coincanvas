@@ -10,13 +10,12 @@ class SummeryWidget extends StatelessWidget {
       elevation: 0,
       child: Container(
         padding: const EdgeInsets.symmetric(
-          vertical: 16,
-          horizontal: 8,
+          vertical: 10,
+          horizontal: 5,
         ),
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 1 / 4,
+        height: 200,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
           gradient: LinearGradient(
             colors: [
               CustomColors.deepCerulean.withOpacity(0.35),

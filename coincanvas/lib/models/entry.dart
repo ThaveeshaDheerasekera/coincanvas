@@ -6,7 +6,7 @@ final formatter = DateFormat.yMd();
 
 const uuid = Uuid();
 
-class Flux {
+class Entry {
   final String id;
   final String title;
   final String description;
@@ -17,7 +17,7 @@ class Flux {
   final PaymentMethod paymentMethod;
   bool isCollapsed;
 
-  Flux({
+  Entry({
     required this.title,
     required this.description,
     required this.amount,
