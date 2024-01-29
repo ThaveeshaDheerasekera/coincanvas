@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:coincanvas/configs/constants.dart';
-import 'package:coincanvas/screens/home_screen.dart';
 import 'package:coincanvas/widgets/global/text_field_widget_copy.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class NewTransactionScreen extends StatefulWidget {
   const NewTransactionScreen({super.key});

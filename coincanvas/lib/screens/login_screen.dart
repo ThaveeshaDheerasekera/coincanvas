@@ -23,24 +23,24 @@ class _LoginScreenState extends State<LoginScreen> {
       TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
-  Widget _message() {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 20),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(2),
-      ),
-      width: double.infinity,
-      child: const Text("message"
-          // Provider.of<AuthRepository>(context, listen: false).getMessage,
-          // textAlign: TextAlign.center,
-          // style: TextStyle(
-          //   color: Theme.of(context).primaryColor,
-          // ),
-          ),
-    );
-  }
+  // Widget _message() {
+  //   return Container(
+  //     margin: const EdgeInsets.only(bottom: 20),
+  //     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+  //     decoration: BoxDecoration(
+  //       color: Colors.grey.withOpacity(0.2),
+  //       borderRadius: BorderRadius.circular(2),
+  //     ),
+  //     width: double.infinity,
+  //     child: const Text("message"
+  //         // Provider.of<AuthRepository>(context, listen: false).getMessage,
+  //         // textAlign: TextAlign.center,
+  //         // style: TextStyle(
+  //         //   color: Theme.of(context).primaryColor,
+  //         // ),
+  //         ),
+  //   );
+  // }
 
   Widget _submitButton() {
     // var user = Provider.of<AuthRepository>(context, listen: false);
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       succMessage = '';
                     });
                   },
-                  child: Text('Clear'),
+                  child: const Text('Clear'),
                 ),
               ],
               child: Column(

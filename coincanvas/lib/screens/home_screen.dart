@@ -1,7 +1,5 @@
-import 'package:coincanvas/configs/constants.dart';
 import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/screens/new_transaction_screen.dart';
-import 'package:coincanvas/widgets/home/home_screen_list_widget.dart';
 import 'package:coincanvas/widgets/home/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 

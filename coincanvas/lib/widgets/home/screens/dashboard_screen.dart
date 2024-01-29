@@ -1,7 +1,6 @@
 import 'package:coincanvas/configs/constants.dart';
 import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/widgets/home/home_screen_list_widget.dart';
-import 'package:coincanvas/widgets/home/summery_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
