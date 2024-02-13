@@ -75,8 +75,31 @@ class EntryRepository extends ChangeNotifier {
         type: Type.Income,
         paymentMethod: PaymentMethod.DebitCard),
   ];
+  final List<Entry> _incomeEntries = [];
+  final List<Entry> _expenseEntries = [];
 
   List<Entry> get entiresList {
     return _entries;
+  }
+
+  List<Entry> get incomeEntriesList {
+    // Clear the list before populating it
+    _incomeEntries.clear();
+
+    // Use the `where` method to filter entries with type `Income`
+    _incomeEntries.addAll(_entries.where((entry) => entry.type == Type.Income));
+
+    return _incomeEntries;
+  }
+
+  List<Entry> get expenseEntriesList {
+    // Clear the list before populating it
+    _expenseEntries.clear();
+
+    // Use the `where` method to filter entries with type `Income`
+    _expenseEntries
+        .addAll(_entries.where((entry) => entry.type == Type.Expense));
+
+    return _expenseEntries;
   }
 }

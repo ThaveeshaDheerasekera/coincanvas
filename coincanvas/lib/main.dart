@@ -1,6 +1,6 @@
 import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/repositories/entry_repository.dart';
-import 'package:coincanvas/screens/home_screen.dart';
+import 'package:coincanvas/screens/book_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: 'Karla',
         ),
-        home: const HomeScreen(),
+        home: const BookScreen(),
       ),
     );
   }

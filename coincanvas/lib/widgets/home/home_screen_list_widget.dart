@@ -14,19 +14,19 @@ class HomeScreenListWidget extends StatelessWidget {
       builder: (context, ref, child) {
         // This is the entries list
         return ListView.builder(
-          itemCount: ref.entiresList.length,
+          itemCount: ref.expenseEntriesList.length,
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
             // This is used to display the list items in the reverse order
             // To achieve this, reverseIndex is passed for the index parameter of the HomeScreenListItemWidget
-            final reversedIndex = ref.entiresList.length - 1 - index;
+            final reversedIndex = ref.expenseEntriesList.length - 1 - index;
             // This container is used to add margin to the first item on the list
             // There is 15 top padding on the home screen
             // Height of the  summery panel is 60 and there is a 15 bottom padding
             // Altogether there is 90 top margin and 15 bottom margin for every itm
             return Container(
-              margin: EdgeInsets.only(top: index == 0 ? 90 : 0, bottom: 15),
+              margin: EdgeInsets.only(top: index == 0 ? 150 : 0, bottom: 15),
               child: HomeScreenListItemWidget(index: reversedIndex),
             );
           },

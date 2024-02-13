@@ -18,18 +18,18 @@ class _HomeScreenListItemWidgetState extends State<HomeScreenListItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer<EntryRepository>(builder: (context, ref, child) {
-      final entry = ref.entiresList[widget.index];
+      final entry = ref.expenseEntriesList[widget.index];
 
       // Main container
       return Card(
         elevation: 3,
-        color: CustomColors.background,
         margin: EdgeInsets.zero,
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            border: Border.all(width: 0.1, color: Colors.grey),
+            color: Colors.white,
+            border: Border.all(width: 1, color: Colors.black),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,10 +44,14 @@ class _HomeScreenListItemWidgetState extends State<HomeScreenListItemWidget> {
                     padding:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
+                      border: const Border(
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black),
+                      ),
+                      borderRadius: BorderRadius.zero,
                       color: entry.type == Type.Income
-                          ? Colors.green.withOpacity(0.65)
-                          : Colors.red.withOpacity(0.65),
+                          ? CustomColors.greenColor
+                          : CustomColors.redColor.withOpacity(0.75),
                     ),
                     // Amount text
                     child: Text(

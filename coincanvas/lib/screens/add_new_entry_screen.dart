@@ -1,19 +1,20 @@
 import 'dart:io';
 import 'package:coincanvas/configs/constants.dart';
+import 'package:coincanvas/screens/book_screen.dart';
 import 'package:coincanvas/widgets/global/text_field_widget_copy.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class NewTransactionScreen extends StatefulWidget {
-  const NewTransactionScreen({super.key});
+class AddNewEntryScreen extends StatefulWidget {
+  const AddNewEntryScreen({super.key});
   @override
-  State<NewTransactionScreen> createState() {
-    return _NewTransactionScreenState();
+  State<AddNewEntryScreen> createState() {
+    return _AddNewEntryScreenState();
   }
 }
 
-class _NewTransactionScreenState extends State<NewTransactionScreen>
+class _AddNewEntryScreenState extends State<AddNewEntryScreen>
     with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
 
@@ -154,9 +155,33 @@ class _NewTransactionScreenState extends State<NewTransactionScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'ExTrack [ADD EXPENSE]',
+          'Add New Entry',
+          style: TextStyle(fontWeight: FontWeight.w700),
         ),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const BookScreen(),
+            ),
+          ),
+          icon: const Icon(
+            Icons.close,
+            color: Colors.white,
+          ),
+        ),
+        actions: const [
+          IconButton(
+            onPressed: null,
+            icon: Icon(
+              Icons.done,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -188,12 +213,10 @@ class _NewTransactionScreenState extends State<NewTransactionScreen>
                   hintText: '15.00',
                   controller: _amountController,
                   keyboardType: TextInputType.number,
-                  suffixWidget: Text(
+                  suffixWidget: const Text(
                     'LKR',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontWeight: FontWeight.normal,
-                        ),
                   ),
+                  textCapitalization: TextCapitalization.sentences,
                 ),
                 const SizedBox(height: 16),
                 labelWidget(context, 'Category'),
@@ -203,12 +226,12 @@ class _NewTransactionScreenState extends State<NewTransactionScreen>
                 typeDropdownWidget(),
                 const SizedBox(height: 16),
                 labelWidget(context, 'Date'),
-                TextFieldWidgetCopy(
-                  // readOnly: true,
-                  controller: _dateController,
-                  onTap: _presentDatePicker,
-                  // suffixIcon: const Icon(Icons.calendar_month),
-                ),
+                // TextFieldWidgetCopy(
+                //   // readOnly: true,
+                //   controller: _dateController,
+                //   onTap: _presentDatePicker,
+                //   // suffixIcon: const Icon(Icons.calendar_month),
+                // ),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -216,6 +239,15 @@ class _NewTransactionScreenState extends State<NewTransactionScreen>
                     ElevatedButton(
                       onPressed: _submitExpenseData,
                       child: const Text('Save Transaction'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BookScreen(),
+                        ),
+                      ),
+                      child: const Text('Cancel'),
                     ),
                   ],
                 ),
