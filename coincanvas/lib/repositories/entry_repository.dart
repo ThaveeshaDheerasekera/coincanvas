@@ -18,7 +18,7 @@ class EntryRepository extends ChangeNotifier {
         description:
             'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
         amount: 100000000000000000.99,
-        dateTime: DateTime.now(),
+        createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Expense,
         paymentMethod: PaymentMethod.BankTransfer),
@@ -27,7 +27,7 @@ class EntryRepository extends ChangeNotifier {
         description:
             'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
         amount: 10.99,
-        dateTime: DateTime.now(),
+        createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Expense,
         paymentMethod: PaymentMethod.BankTransfer),
@@ -36,7 +36,7 @@ class EntryRepository extends ChangeNotifier {
         description:
             'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
         amount: 10.99,
-        dateTime: DateTime.now(),
+        createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Expense,
         paymentMethod: PaymentMethod.BankTransfer),
@@ -45,7 +45,7 @@ class EntryRepository extends ChangeNotifier {
         description:
             'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
         amount: 10.99,
-        dateTime: DateTime.now(),
+        createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Expense,
         paymentMethod: PaymentMethod.BankTransfer),
@@ -53,7 +53,7 @@ class EntryRepository extends ChangeNotifier {
         title: 'Test 2',
         description: '',
         amount: 11.99,
-        dateTime: DateTime.now(),
+        createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Income,
         paymentMethod: PaymentMethod.Cash),
@@ -62,7 +62,7 @@ class EntryRepository extends ChangeNotifier {
         description:
             'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
         amount: 13.99,
-        dateTime: DateTime.now(),
+        createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Expense,
         paymentMethod: PaymentMethod.CreditCard),
@@ -70,9 +70,25 @@ class EntryRepository extends ChangeNotifier {
         title: 'Test 4',
         description: '',
         amount: 140000.99,
-        dateTime: DateTime.now(),
+        createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Income,
+        paymentMethod: PaymentMethod.DebitCard),
+    Entry(
+        title: 'Test 5',
+        description: '',
+        amount: 140560.99,
+        createdAt: DateTime.now(),
+        category: Category.Work,
+        type: Type.Debt,
+        paymentMethod: PaymentMethod.DebitCard),
+    Entry(
+        title: 'Test 6',
+        description: '',
+        amount: 23000.99,
+        createdAt: DateTime.now(),
+        category: Category.Health,
+        type: Type.Receivable,
         paymentMethod: PaymentMethod.DebitCard),
   ];
   final List<Entry> _incomeEntries = [];

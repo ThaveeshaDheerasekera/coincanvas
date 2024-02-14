@@ -1,4 +1,3 @@
-import 'package:coincanvas/configs/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
@@ -6,24 +5,24 @@ final formatter = DateFormat.yMd();
 
 const uuid = Uuid();
 
-class Entry {
+class Book {
   final String id;
   final String title;
   final String description;
-  final double amount;
+  final double initialAmount;
+  final double total;
+  final double totalIncomes;
+  final double totalExpenses;
   final DateTime createdAt;
-  final Category category;
-  final Type type;
-  final PaymentMethod paymentMethod;
 
-  Entry({
+  Book({
     required this.title,
     required this.description,
-    required this.amount,
+    required this.initialAmount,
+    required this.total,
+    required this.totalIncomes,
+    required this.totalExpenses,
     required this.createdAt,
-    required this.category,
-    required this.type,
-    required this.paymentMethod,
   }) : id = uuid.v4();
 
   String get formattedDate {

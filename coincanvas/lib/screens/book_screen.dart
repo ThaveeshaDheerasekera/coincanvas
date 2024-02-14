@@ -1,8 +1,8 @@
 import 'package:coincanvas/configs/custom_colors.dart';
-import 'package:coincanvas/screens/expense_screen.dart';
-import 'package:coincanvas/screens/income_screen.dart';
 import 'package:coincanvas/screens/add_new_entry_screen.dart';
 import 'package:coincanvas/screens/dashboard_screen.dart';
+import 'package:coincanvas/screens/expense_screen.dart';
+import 'package:coincanvas/screens/income_screen.dart';
 import 'package:flutter/material.dart';
 
 class BookScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _BookScreenState extends State<BookScreen> {
           backgroundColor: CustomColors.oliveColor,
           foregroundColor: Colors.black,
           title: const Text(
-            'Transactions (LKR)',
+            'General',
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           actions: [
@@ -40,7 +40,7 @@ class _BookScreenState extends State<BookScreen> {
               icon: const Icon(Icons.add),
             ),
           ],
-          // Botton Tabbar
+          // Bottom TabBar
           bottom: TabBar(
             physics: const BouncingScrollPhysics(),
             dividerColor: Colors.transparent,
@@ -48,7 +48,7 @@ class _BookScreenState extends State<BookScreen> {
             indicatorSize: TabBarIndicatorSize.tab,
             unselectedLabelColor: Colors.black,
             labelColor: CustomColors.oliveColor,
-            indicator: BoxDecoration(color: Colors.black),
+            indicator: const BoxDecoration(color: Colors.black),
             tabs: const [
               Tab(text: 'Dashboard'),
               Tab(text: 'Incomes'),

@@ -25,7 +25,7 @@ enum Category { Food, Travel, Entertainment, Work, Health, Other }
 
 // Transaction type
 // ignore: constant_identifier_names
-enum Type { Income, Expense }
+enum Type { Income, Expense, Debt, Receivable }
 
 // Payment methods
 // ignore: constant_identifier_names

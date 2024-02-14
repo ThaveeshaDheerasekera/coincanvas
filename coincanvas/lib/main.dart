@@ -1,4 +1,3 @@
-import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/repositories/entry_repository.dart';
 import 'package:coincanvas/screens/book_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         title: 'Coin Canvas',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: CustomColors.grey),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           useMaterial3: true,
           fontFamily: 'Karla',
         ),
