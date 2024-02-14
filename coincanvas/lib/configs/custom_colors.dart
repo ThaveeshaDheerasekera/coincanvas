@@ -16,5 +16,5 @@ class CustomColors {
   static Color greenColor = const Color.fromRGBO(93, 226, 60, 0.5);
   static Color blueColor = const Color.fromRGBO(48, 197, 255, 0.5);
   static Color yellowColor = const Color.fromRGBO(251, 247, 25, 0.5);
-  static Color backgroundColor = const Color.fromRGBO(229, 229, 219, 1.0);
+  static Color primaryColor = const Color.fromRGBO(231, 233, 234, 1.0);
 }

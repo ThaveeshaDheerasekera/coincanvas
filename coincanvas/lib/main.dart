@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         title: 'Coin Canvas',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           useMaterial3: true,
           fontFamily: 'Karla',
         ),

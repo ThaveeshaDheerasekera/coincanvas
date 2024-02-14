@@ -21,19 +21,10 @@ class HomeScreenListWidget extends StatelessWidget {
             // This is used to display the list items in the reverse order
             // To achieve this, reverseIndex is passed for the index parameter of the HomeScreenListItemWidget
             final reversedIndex = ref.entiresList.length - 1 - index;
-            // 15 bottom margin for every item
-            return Container(
-              margin: const EdgeInsets.only(bottom: 15),
-              child: HomeScreenListItemWidget(index: reversedIndex),
-            );
+            return HomeScreenListItemWidget(index: reversedIndex);
           },
         );
       },
     );
   }
 }
-
-// This container is used to add margin to the first item on the list
-// There is 15 top padding on the home screen
-// Height of the  summery panel is 160 and there is a 15 bottom padding
-// Altogether there is 190 top margin only for the top item and

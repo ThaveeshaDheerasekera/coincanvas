@@ -8,37 +8,59 @@ class SummeryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 290,
-      decoration: const BoxDecoration(color: Colors.black),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Total Balance: Title and amount
-          summeryItem('Total', '4,237,420,472', CustomColors.blueColor),
-          // Total Incomes: Title and amount
-          summeryItem('Income', '673,445', CustomColors.greenColor),
-          // Total Expenses: Title and amount
-          summeryItem('Expense', '12,345', CustomColors.redColor),
-          // Total Debts: Title and amount
-          summeryItem('Debt', '345,45', CustomColors.orangeColor),
-          // Total Receivable Amount: Title and amount
-          summeryItem('Receivable', '98,745', CustomColors.yellowColor),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            alignment: Alignment.center,
-            child: const Text(
-              'All Entries',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-              ),
+    return Column(
+      children: [
+        Container(
+          height: 280,
+          decoration: const BoxDecoration(color: Colors.black),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // Total Balance: Title and amount
+              summeryItem('Total', '4,237,420,472', CustomColors.blueColor),
+              // Total Incomes: Title and amount
+              summeryItem('Income', '673,445', CustomColors.greenColor),
+              // Total Expenses: Title and amount
+              summeryItem('Expense', '12,345', CustomColors.redColor),
+              // Total Debts: Title and amount
+              summeryItem('Debt', '345,45', CustomColors.orangeColor),
+              // Total Receivable Amount: Title and amount
+              summeryItem('Receivable', '98,745', CustomColors.yellowColor),
+            ],
+          ),
+        ),
+        // All Entries text
+        Container(
+          height: 200,
+          width: double.infinity,
+          margin: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              border: Border.all(width: 1, color: CustomColors.primaryColor)),
+          child: Text(
+            'TODO: Add a chart here',
+            style: TextStyle(
+              color: CustomColors.primaryColor,
+              fontSize: 14,
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        // All Entries text
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          alignment: Alignment.center,
+          child: Text(
+            'All Entries',
+            style: TextStyle(
+              color: CustomColors.primaryColor,
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -48,15 +70,15 @@ class SummeryWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: CustomColors.primaryColor,
             fontSize: 14,
           ),
         ),
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: CustomColors.backgroundColor,
+            color: CustomColors.primaryColor,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(50),
               bottomRight: Radius.circular(50),

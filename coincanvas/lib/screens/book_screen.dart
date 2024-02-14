@@ -2,6 +2,7 @@ import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/screens/add_new_entry_screen.dart';
 import 'package:coincanvas/screens/dashboard_screen.dart';
 import 'package:coincanvas/screens/expense_screen.dart';
+import 'package:coincanvas/screens/home_screen.dart';
 import 'package:coincanvas/screens/income_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -19,12 +20,22 @@ class _BookScreenState extends State<BookScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           backgroundColor: CustomColors.oliveColor,
           foregroundColor: Colors.black,
           title: const Text(
             'General',
             style: TextStyle(fontWeight: FontWeight.w700),
+          ), // This button is used to navigate back to HomeScreen
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.arrow_back),
           ),
           actions: [
             // This button is used to navigate to AddEntryScreen
@@ -42,7 +53,6 @@ class _BookScreenState extends State<BookScreen> {
           ],
           // Bottom TabBar
           bottom: TabBar(
-            physics: const BouncingScrollPhysics(),
             dividerColor: Colors.transparent,
             dividerHeight: 0.5,
             indicatorSize: TabBarIndicatorSize.tab,
@@ -56,13 +66,20 @@ class _BookScreenState extends State<BookScreen> {
             ],
           ),
         ),
-        body: const TabBarView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            DashboardScreen(),
-            IncomeScreen(),
-            ExpenseScreen(),
-          ],
+        // Container is used to set background color
+        body: Container(
+          color: Colors.black,
+          child: const TabBarView(
+            physics: BouncingScrollPhysics(),
+            children: [
+              // Dashboard of the Book
+              DashboardScreen(),
+              // Income Dashboard
+              IncomeScreen(),
+              // Expense Dashboard
+              ExpenseScreen(),
+            ],
+          ),
         ),
       ),
     );
