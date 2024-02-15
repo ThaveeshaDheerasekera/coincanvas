@@ -1,9 +1,9 @@
 import 'package:coincanvas/configs/custom_colors.dart';
-import 'package:coincanvas/screens/add_new_entry_screen.dart';
-import 'package:coincanvas/screens/dashboard_screen.dart';
-import 'package:coincanvas/screens/expense_screen.dart';
+import 'package:coincanvas/screens/book_screen/add_new_entry_screen.dart';
+import 'package:coincanvas/screens/book_screen/dashboard_screen.dart';
+import 'package:coincanvas/screens/book_screen/expense_screen.dart';
+import 'package:coincanvas/screens/book_screen/income_screen.dart';
 import 'package:coincanvas/screens/home_screen.dart';
-import 'package:coincanvas/screens/income_screen.dart';
 import 'package:flutter/material.dart';
 
 class BookScreen extends StatefulWidget {

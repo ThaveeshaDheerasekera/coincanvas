@@ -1,5 +1,6 @@
 import 'package:coincanvas/configs/custom_colors.dart';
-import 'package:coincanvas/screens/add_new_entry_screen.dart';
+import 'package:coincanvas/screens/book_screen/add_new_entry_screen.dart';
+import 'package:coincanvas/widgets/home_screen/book_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,6 +33,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Container(
         color: Colors.black,
+        height: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: const BookListWidget(),
       ),
     );
   }

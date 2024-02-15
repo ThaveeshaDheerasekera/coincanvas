@@ -1,6 +1,6 @@
 import 'package:coincanvas/configs/constants.dart';
-import 'package:coincanvas/widgets/home/home_screen_list_widget.dart';
-import 'package:coincanvas/widgets/home/summery_widget.dart';
+import 'package:coincanvas/widgets/book_screen/entry_list_widget.dart';
+import 'package:coincanvas/widgets/book_screen/summery_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           // Summery widget is positioned on the top with 15 top padding
           SummeryWidget(),
           // Transaction list is located below the summery widget
-          Expanded(child: HomeScreenListWidget()),
+          Expanded(child: EntryListWidget()),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:coincanvas/configs/custom_colors.dart';
+import 'package:coincanvas/widgets/global/summery_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class SummeryWidget extends StatelessWidget {
@@ -18,15 +19,30 @@ class SummeryWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // Total Balance: Title and amount
-              summeryItem('Total', '4,237,420,472', CustomColors.blueColor),
+              SummeryItemWidget(
+                  title: 'Total',
+                  amount: 1000000000000,
+                  color: CustomColors.blueColor),
               // Total Incomes: Title and amount
-              summeryItem('Income', '673,445', CustomColors.greenColor),
+              SummeryItemWidget(
+                  title: 'Income',
+                  amount: 673445,
+                  color: CustomColors.greenColor),
               // Total Expenses: Title and amount
-              summeryItem('Expense', '12,345', CustomColors.redColor),
+              SummeryItemWidget(
+                  title: 'Expense',
+                  amount: 12345,
+                  color: CustomColors.redColor),
               // Total Debts: Title and amount
-              summeryItem('Debt', '345,45', CustomColors.orangeColor),
+              SummeryItemWidget(
+                  title: 'Debt',
+                  amount: 34545,
+                  color: CustomColors.orangeColor),
               // Total Receivable Amount: Title and amount
-              summeryItem('Receivable', '98,745', CustomColors.yellowColor),
+              SummeryItemWidget(
+                  title: 'Receivable',
+                  amount: 98745,
+                  color: CustomColors.yellowColor),
             ],
           ),
         ),
@@ -57,50 +73,6 @@ class SummeryWidget extends StatelessWidget {
             style: TextStyle(
               color: CustomColors.primaryColor,
               fontSize: 14,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Column summeryItem(String title, String amount, Color color) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            color: CustomColors.primaryColor,
-            fontSize: 14,
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: CustomColors.primaryColor,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(50),
-              bottomRight: Radius.circular(50),
-            ),
-          ),
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              ),
-            ),
-            // Amount text
-            child: Text(
-              '$amount LKR',
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 15,
-              ),
             ),
           ),
         ),

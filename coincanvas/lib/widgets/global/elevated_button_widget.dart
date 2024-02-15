@@ -31,8 +31,8 @@ class _ElevatedButtonWidgetState extends State<ElevatedButtonWidget> {
       style: ElevatedButton.styleFrom(
         elevation: 5,
         minimumSize: Size(widget.width, widget.height),
-        backgroundColor: widget.backgroundColor ?? CustomColors.deepCerulean,
-        foregroundColor: Colors.green,
+        backgroundColor: widget.backgroundColor ?? CustomColors.oliveColor,
+        foregroundColor: Colors.black,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius),

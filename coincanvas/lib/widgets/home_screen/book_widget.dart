@@ -1,29 +1,28 @@
-import 'package:coincanvas/configs/constants.dart';
 import 'package:coincanvas/configs/custom_colors.dart';
-import 'package:coincanvas/repositories/entry_repository.dart';
+import 'package:coincanvas/repositories/book_respository.dart';
+import 'package:coincanvas/widgets/global/elevated_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreenListItemWidget extends StatefulWidget {
+class BookWidget extends StatefulWidget {
   final int index;
-  const HomeScreenListItemWidget({required this.index, super.key});
+  const BookWidget({required this.index, super.key});
 
   @override
-  State<HomeScreenListItemWidget> createState() =>
-      _HomeScreenListItemWidgetState();
+  State<BookWidget> createState() => _BookWidgetState();
 }
 
-class _HomeScreenListItemWidgetState extends State<HomeScreenListItemWidget> {
+class _BookWidgetState extends State<BookWidget> {
   bool _isCollapsed = true;
   @override
   Widget build(BuildContext context) {
-    return Consumer<EntryRepository>(builder: (context, ref, child) {
-      final entry = ref.entiresList[widget.index];
+    return Consumer<BookRepository>(builder: (context, ref, child) {
+      final entry = ref.bookList[widget.index];
 
       // Main container
       return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         decoration: BoxDecoration(
           // Adding top, left and right border to every list item
           border: Border(
@@ -47,33 +46,29 @@ class _HomeScreenListItemWidgetState extends State<HomeScreenListItemWidget> {
             // If entry is an expense, color is red
             // If entry is a debt, color is orange
             // If entry is a receivable, color is yellow
+            // This container is used to display both title and the icon button to expand the description
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: CustomColors.primaryColor),
+                color: CustomColors.primaryColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: entry.type == Type.Income
-                        ? CustomColors.greenColor
-                        : entry.type == Type.Expense
-                            ? CustomColors.redColor
-                            : entry.type == Type.Debt
-                                ? CustomColors.orangeColor
-                                : CustomColors.yellowColor),
+                  color: CustomColors.blueColor,
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 // Amount text
                 child: Text(
-                  '${entry.amount} LKR',
+                  '${entry.total} LKR',
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 16,
+                    fontSize: 15,
                   ),
                 ),
               ),
             ),
-            // This container is used to display both title and the icon button to expand the description
             Container(
               decoration: BoxDecoration(
                 // Bottom border is added to separate the title and the description
@@ -122,6 +117,7 @@ class _HomeScreenListItemWidgetState extends State<HomeScreenListItemWidget> {
                       ),
                     ],
                   ),
+                  // This sizedBox is here to add some space between summery and title
                 ],
               ),
             ),
@@ -148,19 +144,68 @@ class _HomeScreenListItemWidgetState extends State<HomeScreenListItemWidget> {
                 ),
               ),
             ),
-            // This sizedBox is here to add some space between datetime and title
             const SizedBox(height: 10),
+            Table(
+              border: TableBorder.all(
+                  width: 0.5,
+                  color: CustomColors.primaryColor.withOpacity(0.5)),
+              children: [
+                summeryTableRow('Total Incomes', entry.totalIncomes),
+                summeryTableRow('Total Expenses', entry.totalExpenses),
+                summeryTableRow('Total Debt', entry.totalDebt),
+                summeryTableRow('Total Receivables', entry.totalReceivable),
+              ],
+            ),
+            // This sizedBox is here to add some space between description and datetime
+            // const SizedBox(height: 10),
             // Formatted DateTime
-            Text(
-              entry.formattedDate,
-              style: TextStyle(
-                color: CustomColors.primaryColor,
-                fontSize: 13.5,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  entry.formattedDate,
+                  style: TextStyle(
+                    color: CustomColors.primaryColor,
+                    fontSize: 13.5,
+                  ),
+                ),
+                ElevatedButtonWidget(
+                  width: 30,
+                  height: 30,
+                  borderRadius: 5,
+                  onPressed: () {},
+                  child: const Text('open'),
+                )
+              ],
             ),
           ],
         ),
       );
     });
+  }
+
+  TableRow summeryTableRow(String header, double value) {
+    return TableRow(children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: Text(
+          header,
+          style: TextStyle(
+            color: CustomColors.primaryColor,
+            fontSize: 13.5,
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: Text(
+          '$value LKR',
+          style: TextStyle(
+            color: CustomColors.primaryColor,
+            fontSize: 13.5,
+          ),
+        ),
+      ),
+    ]);
   }
 }

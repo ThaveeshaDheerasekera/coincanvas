@@ -13,6 +13,8 @@ class Book {
   final double total;
   final double totalIncomes;
   final double totalExpenses;
+  final double totalDebt;
+  final double totalReceivable;
   final DateTime createdAt;
 
   Book({
@@ -22,6 +24,8 @@ class Book {
     required this.total,
     required this.totalIncomes,
     required this.totalExpenses,
+    required this.totalDebt,
+    required this.totalReceivable,
     required this.createdAt,
   }) : id = uuid.v4();
 

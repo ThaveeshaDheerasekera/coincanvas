@@ -26,7 +26,7 @@ class EntryRepository extends ChangeNotifier {
         title: 'Test 1',
         description:
             'Quisque sollicitudin a lacus et tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus metus eros, molestie condimentum lacinia vitae, pharetra sed orci. Nam ac neque a urna varius dapibus. Quisque mi massa, maximus non neque vitae, luctus ullamcorper urna. Nulla et faucibus metus.',
-        amount: 10.99,
+        amount: 1000000000000.99,
         createdAt: DateTime.now(),
         category: Category.Work,
         type: Type.Expense,

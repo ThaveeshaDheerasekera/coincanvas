@@ -1,5 +1,6 @@
+import 'package:coincanvas/repositories/book_respository.dart';
 import 'package:coincanvas/repositories/entry_repository.dart';
-import 'package:coincanvas/screens/book_screen.dart';
+import 'package:coincanvas/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => EntryRepository()),
+        ChangeNotifierProvider(create: (context) => BookRepository()),
       ],
       child: MaterialApp(
         title: 'Coin Canvas',
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: 'Karla',
         ),
-        home: const BookScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
