@@ -18,7 +18,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       // Background color is the same as selected tab color
       color: Colors.black,
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
+      padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
       height: Constants.screenSize(context).height,
       child: const Column(
         children: [

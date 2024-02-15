@@ -12,7 +12,6 @@ class SummeryWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 280,
           decoration: const BoxDecoration(color: Colors.black),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,23 +43,6 @@ class SummeryWidget extends StatelessWidget {
                   amount: 98745,
                   color: CustomColors.yellowColor),
             ],
-          ),
-        ),
-        // All Entries text
-        Container(
-          height: 200,
-          width: double.infinity,
-          margin: const EdgeInsets.only(top: 10),
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              border: Border.all(width: 1, color: CustomColors.primaryColor)),
-          child: Text(
-            'TODO: Add a chart here',
-            style: TextStyle(
-              color: CustomColors.primaryColor,
-              fontSize: 14,
-            ),
           ),
         ),
         // All Entries text

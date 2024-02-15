@@ -33,7 +33,7 @@ class SummeryItemWidget extends StatelessWidget {
         ),
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 15),
           decoration: BoxDecoration(
             color: color,
             borderRadius: const BorderRadius.only(

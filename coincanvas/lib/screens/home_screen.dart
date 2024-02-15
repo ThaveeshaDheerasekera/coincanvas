@@ -1,5 +1,5 @@
 import 'package:coincanvas/configs/custom_colors.dart';
-import 'package:coincanvas/screens/book_screen/add_new_entry_screen.dart';
+import 'package:coincanvas/widgets/home_screen/add_new_book_screen.dart';
 import 'package:coincanvas/widgets/home_screen/book_list_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const AddNewEntryScreen(),
+                  builder: (context) => const AddNewBookScreen(),
                 ),
               );
             },

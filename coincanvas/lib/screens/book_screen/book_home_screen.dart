@@ -3,17 +3,16 @@ import 'package:coincanvas/screens/book_screen/add_new_entry_screen.dart';
 import 'package:coincanvas/screens/book_screen/dashboard_screen.dart';
 import 'package:coincanvas/screens/book_screen/expense_screen.dart';
 import 'package:coincanvas/screens/book_screen/income_screen.dart';
-import 'package:coincanvas/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class BookScreen extends StatefulWidget {
-  const BookScreen({super.key});
+class BookHomeScreen extends StatefulWidget {
+  const BookHomeScreen({super.key});
 
   @override
-  State<BookScreen> createState() => _BookScreenState();
+  State<BookHomeScreen> createState() => _BookHomeScreenState();
 }
 
-class _BookScreenState extends State<BookScreen> {
+class _BookHomeScreenState extends State<BookHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -25,17 +24,6 @@ class _BookScreenState extends State<BookScreen> {
           title: const Text(
             'General',
             style: TextStyle(fontWeight: FontWeight.w700),
-          ), // This button is used to navigate back to HomeScreen
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.arrow_back),
           ),
           actions: [
             // This button is used to navigate to AddEntryScreen

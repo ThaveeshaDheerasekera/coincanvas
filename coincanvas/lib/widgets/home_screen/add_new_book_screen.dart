@@ -1,21 +1,23 @@
 import 'dart:io';
 
 import 'package:coincanvas/configs/constants.dart';
+import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/screens/book_screen/book_home_screen.dart';
+import 'package:coincanvas/screens/home_screen.dart';
 import 'package:coincanvas/widgets/global/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class AddNewEntryScreen extends StatefulWidget {
-  const AddNewEntryScreen({super.key});
+class AddNewBookScreen extends StatefulWidget {
+  const AddNewBookScreen({super.key});
   @override
-  State<AddNewEntryScreen> createState() {
-    return _AddNewEntryScreenState();
+  State<AddNewBookScreen> createState() {
+    return _AddNewBookScreenState();
   }
 }
 
-class _AddNewEntryScreenState extends State<AddNewEntryScreen>
+class _AddNewBookScreenState extends State<AddNewBookScreen>
     with WidgetsBindingObserver {
   final _formKey = GlobalKey<FormState>();
 
@@ -151,27 +153,27 @@ class _AddNewEntryScreenState extends State<AddNewEntryScreen>
     super.dispose();
   }
 
+  int selectedOptionIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Add New Entry',
+          'Add Book',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        centerTitle: true,
+        backgroundColor: CustomColors.oliveColor,
+        foregroundColor: Colors.black,
         leading: IconButton(
           onPressed: () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const BookHomeScreen(),
+              builder: (context) => const HomeScreen(),
             ),
           ),
           icon: const Icon(
             Icons.close,
-            color: Colors.white,
           ),
         ),
         actions: const [
@@ -179,26 +181,27 @@ class _AddNewEntryScreenState extends State<AddNewEntryScreen>
             onPressed: null,
             icon: Icon(
               Icons.done,
-              color: Colors.white,
             ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
+      body: Container(
+        height: double.infinity,
+        padding: const EdgeInsets.all(15),
+        color: Colors.black,
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 labelWidget(context, 'Title'),
                 TextFieldWidget(
                   hintText: 'Title',
                   controller: _titleController,
                   keyboardType: TextInputType.text,
-                  maxLines: 1,
                   maxLength: 50,
-                  textCapitalization: TextCapitalization.sentences,
+                  textCapitalization: TextCapitalization.words,
                 ),
                 labelWidget(context, 'Notes'),
                 TextFieldWidget(
@@ -208,25 +211,73 @@ class _AddNewEntryScreenState extends State<AddNewEntryScreen>
                   maxLines: 5,
                   textCapitalization: TextCapitalization.sentences,
                 ),
-                const SizedBox(height: 16),
-                labelWidget(context, 'Amount'),
-                TextFieldWidget(
-                  hintText: '15.00',
-                  controller: _amountController,
-                  keyboardType: TextInputType.number,
-                  suffixWidget: const Text(
-                    'LKR',
-                  ),
-                  textCapitalization: TextCapitalization.sentences,
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          labelWidget(context, 'Amount'),
+                          TextFieldWidget(
+                            hintText: '150',
+                            controller: _amountController,
+                            keyboardType: TextInputType.number,
+                            suffixWidget: const Text(
+                              'LKR',
+                            ),
+                            textCapitalization: TextCapitalization.sentences,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: Constants.screenSize(context).width * 0.25,
+                      margin: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          labelWidget(context, 'Cents'),
+                          TextFieldWidget(
+                            hintText: '25',
+                            controller: _amountController,
+                            keyboardType: TextInputType.number,
+                            suffixWidget: const Text(
+                              'LKR',
+                            ),
+                            textCapitalization: TextCapitalization.sentences,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 labelWidget(context, 'Category'),
                 categoryDropdownWidget(),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 labelWidget(context, 'Type'),
                 typeDropdownWidget(),
                 const SizedBox(height: 16),
                 labelWidget(context, 'Date'),
+                CupertinoPicker(
+                  itemExtent: 32.0,
+                  onSelectedItemChanged: (int index) {
+                    setState(() {
+                      selectedOptionIndex = index;
+                    });
+                    // Handle selection change
+                    print("Selected option: ${index + 1}");
+                  },
+                  children: [
+                    Text('Option 1'),
+                    Text('Option 2'),
+                    Text('Option 3'),
+                  ],
+                  scrollController: FixedExtentScrollController(
+                      initialItem: selectedOptionIndex),
+                ),
                 // TextFieldWidgetCopy(
                 //   // readOnly: true,
                 //   controller: _dateController,
@@ -261,21 +312,22 @@ class _AddNewEntryScreenState extends State<AddNewEntryScreen>
     );
   }
 
-  Container labelWidget(BuildContext context, String label) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(2, 0, 0, 4),
-      alignment: Alignment.topLeft,
+  Padding labelWidget(BuildContext context, String label) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 2),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
 
   DropdownButtonFormField<Type> typeDropdownWidget() {
     return DropdownButtonFormField<Type>(
+      isExpanded: false,
       hint: Text(
         'Click to select type',
         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -283,7 +335,6 @@ class _AddNewEntryScreenState extends State<AddNewEntryScreen>
               color: Colors.grey,
             ),
       ),
-      isExpanded: true,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
@@ -295,50 +346,18 @@ class _AddNewEntryScreenState extends State<AddNewEntryScreen>
         ),
       ),
       value: _selectedType,
-      items: Type.values.map((type) {
-        return DropdownMenuItem<Type>(
-          value: type,
-          child: Row(
-            children: [
-              Text(
-                type.name,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.normal,
-                    ),
-              ),
-              const SizedBox(width: 32),
-              Icon(
-                Constants.typeIcons[type],
-              ),
-            ],
-          ),
-        );
-      }).toList(),
-      selectedItemBuilder: (BuildContext context) => Type.values
-          .map(
-            (type) => Row(
-              children: [
-                Text(
-                  type.name,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.normal,
-                      ),
-                ),
-                const SizedBox(width: 32),
-                Icon(
-                  Constants.typeIcons[type],
-                ),
-              ],
-            ),
-          )
+      items: Type.values
+          .map((type) =>
+              DropdownMenuItem<Type>(value: type, child: Text(type.name)))
           .toList(),
+      selectedItemBuilder: (BuildContext context) =>
+          Type.values.map((type) => Text(type.name)).toList(),
       onChanged: (value) {
-        if (value == null) {
-          return;
+        if (value != null) {
+          setState(() {
+            _selectedType = value;
+          });
         }
-        setState(() {
-          _selectedType = value;
-        });
       },
     );
   }

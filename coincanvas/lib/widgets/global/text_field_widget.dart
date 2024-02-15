@@ -1,18 +1,18 @@
 import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:flutter/material.dart';
 
-class TextFieldWidgetCopy extends StatelessWidget {
+class TextFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final Widget? suffixWidget;
   final TextCapitalization? textCapitalization;
   final void Function()? onTap;
   final bool obscureText;
-  final String hintText;
+  final String? hintText;
   final int? maxLines;
   final int? maxLength;
 
-  const TextFieldWidgetCopy({
+  const TextFieldWidget({
     super.key,
     this.controller,
     this.keyboardType,
@@ -20,7 +20,7 @@ class TextFieldWidgetCopy extends StatelessWidget {
     this.textCapitalization,
     this.onTap,
     this.obscureText = false,
-    this.hintText = '',
+    this.hintText,
     this.maxLines,
     this.maxLength,
   });
@@ -36,20 +36,27 @@ class TextFieldWidgetCopy extends StatelessWidget {
       obscureText: obscureText,
       textCapitalization: textCapitalization!,
       keyboardType: keyboardType,
-      style: const TextStyle(
-        fontWeight: FontWeight.w500,
-      ),
+      cursorColor: CustomColors.oliveColor,
+      style: TextStyle(color: CustomColors.primaryColor),
       decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: const TextStyle(
-          fontWeight: FontWeight.w500,
+        isDense: true,
+        contentPadding: const EdgeInsets.all(5),
+        hintText: hintText ?? '',
+        hintStyle: TextStyle(
+          fontSize: 14,
+          color: CustomColors.primaryColor.withOpacity(0.5),
+        ),
+        counterStyle: TextStyle(
+          color: CustomColors.primaryColor.withOpacity(0.5),
         ),
         suffix: suffixWidget,
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(width: 1, color: Colors.grey),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 0.5, color: CustomColors.primaryColor),
+          borderRadius: BorderRadius.circular(5),
         ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(width: 1, color: CustomColors.deepCerulean),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 0.5, color: CustomColors.oliveColor),
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
     );

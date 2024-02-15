@@ -26,15 +26,18 @@ class _EntryWidgetState extends State<EntryWidget> {
         decoration: BoxDecoration(
           // Adding top, left and right border to every list item
           border: Border(
-            top: BorderSide(width: 1, color: CustomColors.primaryColor),
-            left: BorderSide(width: 1, color: CustomColors.primaryColor),
-            right: BorderSide(width: 1, color: CustomColors.primaryColor),
+            top: BorderSide(
+                width: 1, color: CustomColors.primaryColor.withOpacity(0.5)),
+            left: BorderSide(
+                width: 1, color: CustomColors.primaryColor.withOpacity(0.5)),
+            right: BorderSide(
+                width: 1, color: CustomColors.primaryColor.withOpacity(0.5)),
             // Bottom border is only visible on the first item of the list,
             // which is the bottom most item, because the list is reversed
             bottom: BorderSide(
                 width: 1,
                 color: widget.index == 0
-                    ? CustomColors.primaryColor
+                    ? CustomColors.primaryColor.withOpacity(0.5)
                     : Colors.transparent),
           ),
         ),
@@ -52,7 +55,7 @@ class _EntryWidgetState extends State<EntryWidget> {
                   color: CustomColors.primaryColor),
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: entry.type == Type.Income
@@ -149,17 +152,62 @@ class _EntryWidgetState extends State<EntryWidget> {
             ),
             // This sizedBox is here to add some space between datetime and title
             const SizedBox(height: 10),
+            // Summary of the Entry
+            // Id, Transaction Type, Category and Payment Method are illustrated in the table
+            Table(
+              border: TableBorder.all(
+                  width: 0.5,
+                  color: CustomColors.primaryColor.withOpacity(0.5)),
+              children: [
+                summeryTableRow('Transaction Type', entry.type.name),
+                summeryTableRow('Category', entry.category.name),
+                summeryTableRow('Payment Method', entry.paymentMethod.name),
+                summeryTableRow('Created DateTime', entry.formattedDate),
+              ],
+            ),
+            // This sizedBox is here to add some space between datetime and summary table
+            const SizedBox(height: 10),
             // Formatted DateTime
-            Text(
-              entry.formattedDate,
-              style: TextStyle(
-                color: CustomColors.primaryColor,
-                fontSize: 13.5,
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                entry.id,
+                style: TextStyle(
+                  color: CustomColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13.5,
+                ),
               ),
             ),
           ],
         ),
       );
     });
+  }
+
+  TableRow summeryTableRow(String header, String value) {
+    return TableRow(children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: Text(
+          header,
+          style: TextStyle(
+            color: CustomColors.primaryColor,
+            fontWeight: FontWeight.w500,
+            fontSize: 13.5,
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: Text(
+          value,
+          style: TextStyle(
+            color: CustomColors.primaryColor,
+            fontSize: 13.5,
+          ),
+        ),
+      ),
+    ]);
   }
 }

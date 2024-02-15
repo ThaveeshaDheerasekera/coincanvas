@@ -1,6 +1,6 @@
 import 'package:coincanvas/configs/custom_colors.dart';
 import 'package:coincanvas/widgets/global/elevated_button_widget.dart';
-import 'package:coincanvas/widgets/global/text_field_widget_copy.dart';
+import 'package:coincanvas/widgets/global/text_field_widget.dart';
 import 'package:coincanvas/widgets/global/title_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -109,27 +109,27 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   !isLogin
-                      ? TextFieldWidgetCopy(
+                      ? TextFieldWidget(
                           hintText: 'Name',
                           controller: _nameController,
                           keyboardType: TextInputType.text,
                           textCapitalization: TextCapitalization.words,
                         )
                       : const SizedBox(),
-                  TextFieldWidgetCopy(
+                  TextFieldWidget(
                     hintText: 'Email',
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     textCapitalization: TextCapitalization.none,
                   ),
-                  TextFieldWidgetCopy(
+                  TextFieldWidget(
                     hintText: 'Password',
                     obscureText: true,
                     controller: _passwordController,
                     textCapitalization: TextCapitalization.none,
                   ),
                   !isLogin
-                      ? TextFieldWidgetCopy(
+                      ? TextFieldWidget(
                           hintText: 'Confirm Password',
                           obscureText: true,
                           controller: _confirmPasswordController,
