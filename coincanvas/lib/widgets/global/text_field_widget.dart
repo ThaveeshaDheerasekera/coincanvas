@@ -34,8 +34,8 @@ class TextFieldWidget extends StatelessWidget {
       maxLines: obscureText ? 1 : maxLines,
       maxLength: maxLength,
       obscureText: obscureText,
-      textCapitalization: textCapitalization!,
-      keyboardType: keyboardType,
+      textCapitalization: textCapitalization ?? TextCapitalization.none,
+      keyboardType: keyboardType ?? TextInputType.text,
       cursorColor: CustomColors.oliveColor,
       style: TextStyle(color: CustomColors.primaryColor),
       decoration: InputDecoration(

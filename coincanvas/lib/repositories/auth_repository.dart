@@ -1,87 +1,117 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coincanvas/configs/custom_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
-// class AuthRepository extends ChangeNotifier {
-//   // Firebase Authentication
-//   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-//   // Firebase Firestore
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+class AuthRepository extends ChangeNotifier {
+  // Firebase Authentication
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  // Firebase Firestore
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-//   User? get currentUSer => _firebaseAuth.currentUser;
-//   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
-//   String _message = '';
+  User? get currentUSer => _firebaseAuth.currentUser;
+  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
-//   String get getMessage {
-//     return _message;
-//   }
+  // Show error message function
+  void _showErrorMessage(BuildContext context, String errorMessage) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          errorMessage,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: CustomColors.oliveColor,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
 
-//   void clearMessage() {
-//     _message = '';
-//   }
+  // Login function
+  Future<void> signInWithEmailAndPassword({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      // Check if all fields are filled
+      if (email.isEmpty || password.isEmpty) {
+        _showErrorMessage(context, 'Fill all fields!');
+        notifyListeners();
+        return;
+      }
 
-//   Future<void> signInWithEmailAndPassword({
-//     required String email,
-//     required String password,
-//   }) async {
-//     try {
-//       await _firebaseAuth.signInWithEmailAndPassword(
-//         email: email,
-//         password: password,
-//       );
-//       notifyListeners();
-//     } on FirebaseAuthException catch (e) {
-//       _message = e.message!;
-//       notifyListeners();
-//     }
-//   }
+      // Execute login method
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      notifyListeners();
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) _showErrorMessage(context, 'SERVER: $e');
+      notifyListeners();
+    }
+  }
 
-//   Future<void> createUserWithEmailAndPassword({
-//     required String name,
-//     required String email,
-//     required String password,
-//     required String conPassword,
-//   }) async {
-//     try {
-//       if (password != conPassword) {
-//         _message = 'Password do not match';
-//         notifyListeners();
-//       } else if (name.isEmpty || conPassword.isEmpty) {
-//         _message = 'All fields must be filled';
-//         notifyListeners();
-//       } else {
-//         // Create user in the firebase authentication
-//         final UserCredential _userCredential =
-//             await _firebaseAuth.createUserWithEmailAndPassword(
-//           email: email,
-//           password: password,
-//         );
+  // Sign in function
+  Future<void> createUserWithEmailAndPassword({
+    required BuildContext context,
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) async {
+    try {
+      // Check if all fields are filled
+      if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+        _showErrorMessage(context, 'Fill all fields!');
+        notifyListeners();
+        return;
+      }
 
-//         // Get uid from the created user to save
-//         // in th users collection in firestore
-//         final uid = _userCredential.user?.uid;
+      // Check if the password matches the confirm password field
+      if (password != confirmPassword) {
+        _showErrorMessage(context, 'Passwords do not match!');
+        notifyListeners();
+        return;
+      }
 
-//         // add displayName of the created user
-//         await _userCredential.user?.updateDisplayName(name);
+      // Create user in the firebase authentication
+      final UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-//         print('-------------' + uid! + email + name + '-------------');
-//         // save user in the users collection in firestore
-//         await _firestore.collection('users').doc(uid).set({
-//           'email': email,
-//           'name': name,
-//         }).onError(
-//           (e, _) => print("Error writing document: $e"),
-//         );
-//         notifyListeners();
-//       }
-//     } on FirebaseAuthException catch (e) {
-//       _message = e.message!;
-//       notifyListeners();
-//     }
-//   }
+      // Get uid from the created user to save
+      // in th users collection in firestore
+      final uid = userCredential.user?.uid;
 
-//   Future<void> signOut() async {
-//     await _firebaseAuth.signOut();
-//     notifyListeners();
-//   }
-// }
+      // save user in the users collection in firestore
+      await _firestore.collection('users').doc(uid).set({
+        'email': email,
+      }).onError((e, _) {
+        _showErrorMessage(context, 'SERVER: $e');
+      });
+
+      notifyListeners();
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) _showErrorMessage(context, 'SERVER: $e');
+      notifyListeners();
+    }
+  }
+
+  // Sign out function
+  Future<void> signOut({
+    required BuildContext context,
+  }) async {
+    try {
+      await _firebaseAuth.signOut();
+      notifyListeners();
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) _showErrorMessage(context, 'SERVER: $e');
+      notifyListeners();
+    }
+  }
+}

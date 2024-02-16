@@ -21,8 +21,11 @@ class _BookWidgetState extends State<BookWidget> {
 
       // Main container
       return GestureDetector(
-        onTap: () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BookHomeScreen())),
+        onTap: () {
+          print(ref.bookList);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const BookHomeScreen()));
+        },
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
