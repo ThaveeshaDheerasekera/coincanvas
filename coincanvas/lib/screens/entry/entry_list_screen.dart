@@ -1,12 +1,14 @@
 import 'package:coincanvas/configs/custom_colors.dart';
-import 'package:coincanvas/screens/book_screen/add_new_entry_screen.dart';
-import 'package:coincanvas/screens/book_screen/dashboard_screen.dart';
-import 'package:coincanvas/screens/book_screen/expense_screen.dart';
-import 'package:coincanvas/screens/book_screen/income_screen.dart';
+import 'package:coincanvas/models/book.dart';
+import 'package:coincanvas/screens/entry/add_new_entry_screen.dart';
+import 'package:coincanvas/screens/entry/dashboard_screen.dart';
+import 'package:coincanvas/screens/entry/expense_screen.dart';
+import 'package:coincanvas/screens/entry/income_screen.dart';
 import 'package:flutter/material.dart';
 
 class BookHomeScreen extends StatefulWidget {
-  const BookHomeScreen({super.key});
+  final Book book;
+  const BookHomeScreen({super.key, required this.book});
 
   @override
   State<BookHomeScreen> createState() => _BookHomeScreenState();
@@ -21,9 +23,10 @@ class _BookHomeScreenState extends State<BookHomeScreen> {
         appBar: AppBar(
           backgroundColor: CustomColors.oliveColor,
           foregroundColor: Colors.black,
-          title: const Text(
-            'General',
-            style: TextStyle(fontWeight: FontWeight.w700),
+          // title of the Book
+          title: Text(
+            widget.book.title,
+            style: const TextStyle(fontWeight: FontWeight.w700),
           ),
           actions: [
             // This button is used to navigate to AddEntryScreen
@@ -57,17 +60,33 @@ class _BookHomeScreenState extends State<BookHomeScreen> {
         // Container is used to set background color
         body: Container(
           color: Colors.black,
-          child: const TabBarView(
-            physics: BouncingScrollPhysics(),
+          child: TabBarView(
+            physics: const BouncingScrollPhysics(),
             children: [
               // Dashboard of the Book
-              DashboardScreen(),
+              DashboardScreen(book: widget.book),
               // Income Dashboard
-              IncomeScreen(),
+              const IncomeScreen(),
               // Expense Dashboard
-              ExpenseScreen(),
+              const ExpenseScreen(),
             ],
           ),
+        ),
+        // This is used to add new entries
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniEndDocked,
+        floatingActionButton: FloatingActionButton.small(
+          backgroundColor: CustomColors.oliveColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddNewEntryScreen(),
+            ),
+          ),
+          child: const Icon(Icons.add),
         ),
       ),
     );

@@ -1,12 +1,17 @@
 import 'package:coincanvas/configs/custom_colors.dart';
+import 'package:coincanvas/models/book.dart';
 import 'package:coincanvas/widgets/global/summery_item_widget.dart';
 import 'package:flutter/material.dart';
 
-class SummeryWidget extends StatelessWidget {
-  const SummeryWidget({
-    super.key,
-  });
+class SummeryWidget extends StatefulWidget {
+  final Book book;
+  const SummeryWidget({super.key, required this.book});
 
+  @override
+  State<SummeryWidget> createState() => _SummeryWidgetState();
+}
+
+class _SummeryWidgetState extends State<SummeryWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,27 +25,32 @@ class SummeryWidget extends StatelessWidget {
               // Total Balance: Title and amount
               SummeryItemWidget(
                   title: 'Total',
-                  amount: 1000000000000,
+                  amount: widget.book.total,
+                  currency: widget.book.currency,
                   color: CustomColors.blueColor),
               // Total Incomes: Title and amount
               SummeryItemWidget(
-                  title: 'Income',
-                  amount: 673445,
+                  title: 'Total Incomes',
+                  amount: widget.book.totalIncomes,
+                  currency: widget.book.currency,
                   color: CustomColors.greenColor),
               // Total Expenses: Title and amount
               SummeryItemWidget(
-                  title: 'Expense',
-                  amount: 12345,
+                  title: 'Total Expenses',
+                  amount: widget.book.totalExpenses,
+                  currency: widget.book.currency,
                   color: CustomColors.redColor),
               // Total Debts: Title and amount
               SummeryItemWidget(
-                  title: 'Debt',
-                  amount: 34545,
+                  title: 'Total Debts',
+                  amount: widget.book.totalDebts,
+                  currency: widget.book.currency,
                   color: CustomColors.orangeColor),
               // Total Receivable Amount: Title and amount
               SummeryItemWidget(
-                  title: 'Receivable',
-                  amount: 98745,
+                  title: 'Total Receivables',
+                  amount: widget.book.totalReceivables,
+                  currency: widget.book.currency,
                   color: CustomColors.yellowColor),
             ],
           ),

@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class SummeryItemWidget extends StatelessWidget {
   final String title;
   final double amount;
+  final String currency;
   final Color color;
   const SummeryItemWidget({
     super.key,
     required this.title,
     required this.amount,
+    required this.currency,
     required this.color,
   });
 
@@ -43,7 +45,7 @@ class SummeryItemWidget extends StatelessWidget {
           ),
           // Amount text
           child: Text(
-            '$amount LKR',
+            '$amount $currency',
             style: const TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 15,

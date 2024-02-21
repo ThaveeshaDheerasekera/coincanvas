@@ -1,16 +1,16 @@
 import 'package:coincanvas/configs/constants.dart';
 import 'package:coincanvas/configs/custom_colors.dart';
-import 'package:coincanvas/widgets/book_screen/entry_list_widget.dart';
+import 'package:coincanvas/widgets/entry/entry_list_widget.dart';
 import 'package:flutter/material.dart';
 
-class IncomeScreen extends StatefulWidget {
-  const IncomeScreen({super.key});
+class ExpenseScreen extends StatefulWidget {
+  const ExpenseScreen({super.key});
 
   @override
-  State<IncomeScreen> createState() => _IncomeScreenState();
+  State<ExpenseScreen> createState() => _ExpenseScreenState();
 }
 
-class _IncomeScreenState extends State<IncomeScreen> {
+class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   Widget build(BuildContext context) {
     // This is the Dashboard Screen

@@ -11,23 +11,25 @@ class TextFieldWidget extends StatelessWidget {
   final String? hintText;
   final int? maxLines;
   final int? maxLength;
+  final bool? readOnly;
 
-  const TextFieldWidget({
-    super.key,
-    this.controller,
-    this.keyboardType,
-    this.suffixWidget,
-    this.textCapitalization,
-    this.onTap,
-    this.obscureText = false,
-    this.hintText,
-    this.maxLines,
-    this.maxLength,
-  });
+  const TextFieldWidget(
+      {super.key,
+      this.controller,
+      this.keyboardType,
+      this.suffixWidget,
+      this.textCapitalization,
+      this.onTap,
+      this.obscureText = false,
+      this.hintText,
+      this.maxLines,
+      this.maxLength,
+      this.readOnly});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly: readOnly ?? false,
       controller: controller,
       autofocus: false,
       onTap: onTap,
@@ -40,7 +42,7 @@ class TextFieldWidget extends StatelessWidget {
       style: TextStyle(color: CustomColors.primaryColor),
       decoration: InputDecoration(
         isDense: true,
-        contentPadding: const EdgeInsets.all(5),
+        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         hintText: hintText ?? '',
         hintStyle: TextStyle(
           fontSize: 14,

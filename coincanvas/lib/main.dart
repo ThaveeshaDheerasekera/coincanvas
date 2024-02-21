@@ -3,7 +3,7 @@ import 'package:coincanvas/firebase_options.dart';
 import 'package:coincanvas/repositories/auth_repository.dart';
 import 'package:coincanvas/repositories/book_respository.dart';
 import 'package:coincanvas/repositories/entry_repository.dart';
-import 'package:coincanvas/screens/home_screen.dart';
+import 'package:coincanvas/screens/book/book_list_screen.dart';
 import 'package:coincanvas/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

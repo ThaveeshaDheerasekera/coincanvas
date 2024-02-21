@@ -84,6 +84,11 @@ class AuthRepository extends ChangeNotifier {
         password: password,
       );
 
+      // Send email verification
+      await userCredential.user?.sendEmailVerification().onError((e, _) {
+        _showErrorMessage(context, 'SERVER: $e');
+      });
+
       // Get uid from the created user to save
       // in th users collection in firestore
       final uid = userCredential.user?.uid;
@@ -97,8 +102,11 @@ class AuthRepository extends ChangeNotifier {
 
       notifyListeners();
     } on FirebaseAuthException catch (e) {
+      if (context.mounted) _showErrorMessage(context, 'SERVER: ${e.message}');
+    } on FirebaseException catch (e) {
+      if (context.mounted) _showErrorMessage(context, 'SERVER: ${e.message}');
+    } catch (e) {
       if (context.mounted) _showErrorMessage(context, 'SERVER: $e');
-      notifyListeners();
     }
   }
 
@@ -110,8 +118,11 @@ class AuthRepository extends ChangeNotifier {
       await _firebaseAuth.signOut();
       notifyListeners();
     } on FirebaseAuthException catch (e) {
+      if (context.mounted) _showErrorMessage(context, 'SERVER: ${e.message}');
+    } on FirebaseException catch (e) {
+      if (context.mounted) _showErrorMessage(context, 'SERVER: ${e.message}');
+    } catch (e) {
       if (context.mounted) _showErrorMessage(context, 'SERVER: $e');
-      notifyListeners();
     }
   }
 }
